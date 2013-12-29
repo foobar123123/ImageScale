@@ -2,37 +2,49 @@
 
 class ImageScale
 {
+	// set quality resp. compression for the whole script
+	// jpeg_quality = 100; and $png_compression = 0 are highest quality resp. no compression 
+	private	$jpeg_quality = 100; // set quality of image (IJG 75)
+	private $png_compression = 0; // 0 - 9
 
-// set quality resp. compression for the whole script
-// jpeg_quality = 100; and $png_compression = 0 are highest quality resp. no compression 
-private	$jpeg_quality = 100; // set quality of image (IJG 75)
-private $png_compression = 0; // 0 - 9
-
-// set two associative arrays for attribute settings
-private $source, $destination = array(	"directory" => "", 
-										"filename" => "", 
-										"filepath" => "",
-										"height" => "",
-										"width" => "",
-										"filetype" => "",
-										"extension" => "",
-										"imagehandler" => "" );
+	// set two associative arrays for attribute settings
+	private $source, $destination = array(	"directory" => "", 
+											"filename" => "", 
+											"filepath" => "",
+											"height" => "",
+											"width" => "",
+											"filetype" => "",
+											"extension" => "",
+											"imagehandler" => "" );
 
 	public function __construct()
 	{
 		$itsfuckingnothing = true; // nothing...
 	}
 
+	private function validateDirectory($directorys)
+	{
+		foreach($directorys as $directory)
+		{
+			if (preg_match("/[.][.][\/]/", $directory))
+			{
+				throw new Exception("validateDirectory(array) : no fukkn backsteps!1elf");
+			}
+		}
+
+		return 1;
+	}
+
 	// param-types are string,string,string,int,int
 	public function startDispatcher($source_dir, $source_filename, $destination_dir, $destination_height, $destination_width) // dispatcher for all the things
 	{
-		if (preg_match("../", $source_dir))
-		{
-			
-		}
+		// use of backsteps (string "../") throws exception
+		$this->validateDirectory(array($source_dir, $source_filename, $destination_dir)); 
+
 		// validate params given in startDispatcher()
 		if (is_string($source_dir) && is_string($source_filename) && is_string($destination_dir) && is_int($destination_height) && is_int($destination_width))			
 		{
+
 			// set source & destination assoc_array values
 			$this->setDirectorys($source_dir, $destination_dir);
 			$this->setDestinationScale($destination_height, $destination_width);

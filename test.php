@@ -2,7 +2,7 @@
 require_once("classes/ImageScale.php");
 
 // dispatcher params
-$source_dir = "original/";					// Source Directory
+$source_dir = "../original/";					// Source Directory
 $source_filename = "image_original.png";	// Sourcer Filename
 $destination_dir = "scaled/";				// Destination Directory
 $destination_height = 100;					// Destination Height
@@ -15,5 +15,6 @@ var_dump($handler);
 $ret = $handler->startDispatcher($source_dir, $source_filename, $destination_dir, $destination_height, $destination_width);
 var_dump($ret);
 var_dump($handler);
+
 
 ?>
