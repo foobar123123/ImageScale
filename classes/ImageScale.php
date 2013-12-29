@@ -26,7 +26,10 @@ private $source, $destination = array(	"directory" => "",
 	// param-types are string,string,string,int,int
 	public function startDispatcher($source_dir, $source_filename, $destination_dir, $destination_height, $destination_width) // dispatcher for all the things
 	{
-
+		if (preg_match("../", $source_dir))
+		{
+			
+		}
 		// validate params given in startDispatcher()
 		if (is_string($source_dir) && is_string($source_filename) && is_string($destination_dir) && is_int($destination_height) && is_int($destination_width))			
 		{
